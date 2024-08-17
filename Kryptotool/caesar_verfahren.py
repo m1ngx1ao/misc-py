@@ -1,46 +1,35 @@
-al = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-	"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+al = [chr(i + ord('A')) for i in range(26)]
+def get_new_index(l: str, key : int, operator: str):
+	if operator == '+':
+		return al.index(l) + key
+	if operator == '-':
+		return al.index(l) - key
+	assert False
+
+def get_new_message(message : str, key : int, operator: str) -> str:
+	result = ''
+	letters = list(message)
+	for l in letters:
+		if l not in al:
+			result += l
+		else:
+			result += al[get_new_index(l, key, operator) % len(al)]
+	return result
 
 def encrypt_with_key(message : str, key : int) -> str:
-	result = ''
-	letters = list(message)
-	for l in letters:
-		if l not in al:
-			result += l
-		else:
-			result += al[(al.index(l) + key) % len(al)]
-	return result
+	return get_new_message(message, key, '+')
 
 def decrypt_with_key(message : str, key : int) -> str:
-	result = ''
-	letters = list(message)
-	for l in letters:
-		if l not in al:
-			result += l
-		else:
-			result += al[(al.index(l) - key) % len(al)]
-	return result
+	return get_new_message(message, key, '-')
 
 def encrypt_without_key(message : str):
-	letters = list(message)
 	for key, _ in enumerate(al):
-		result = ''
-		for l in letters:
-			if l not in al:
-				result += l
-			else:
-				result += al[(al.index(l) + key) % len(al)]
+		result = encrypt_with_key(message, key)
 		print(result)
 
 def decrypt_without_key(message : str):
-	letters = list(message)
 	for key, _ in enumerate(al):
-		result = ''
-		for l in letters:
-			if l not in al:
-				result += l
-			else:
-				result += al[(al.index(l) - key) % len(al)]
+		result = decrypt_with_key(message, key)
 		print(result)
 
 #print(decrypt_with_key("KDOOR", 3))

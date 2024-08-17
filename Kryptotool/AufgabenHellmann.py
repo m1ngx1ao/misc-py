@@ -25,6 +25,17 @@ for g in range(2, p - 1):
 		print('Aufgabe 2: ' + str(g))
 		break
 
+g = 1
+s = set()
+while max(len(s), g) < p - 1:
+	g += 1
+	s.clear()
+	pw = pow(g, len(s), p)
+	while pw not in s:
+		s.add(pw)
+		pw = pow(g, len(s), p)
+print('Aufgabe 2: ' + str(g))
+
 # TODO: Finde eine primitivwurzel g, sodass g^i alle Elemente von {1, ... p-1} durchläuft. Überprüfe, ob dies auch tatsächlich der Fall ist
 
 
