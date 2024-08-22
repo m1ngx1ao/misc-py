@@ -1,5 +1,9 @@
-from test.academy.sorter import challenges
-from academy.sorter import selection_sort as sorter
+import challenges
+from sorter import insertion_sort as sorter
+
+def test_5556():
+	a = [5, 5, 5, 6]
+	assert [5, 5, 5, 6] == sorter.sort(a)
 
 def test_empty():
 	challenges.empty(sorter)

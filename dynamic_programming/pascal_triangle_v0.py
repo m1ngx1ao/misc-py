@@ -1,8 +1,6 @@
-import math
 import time
 
 def get_result_slower(n: int, k: int) -> int:
-	# todo spiegeln
 	start = time.time()
 	nc = n
 	rows = []
@@ -20,14 +18,12 @@ def get_result_slower(n: int, k: int) -> int:
 	print(end - start)
 	return rows[-1][-1]
 
-#  0.32029128074645996s
 print(get_result_slower(10000, 88))
 
 def get_result(n: int, k: int) -> int:
 	start = time.time()
-	if k > math.ceil(n / 2):
+	if n < 2 * k:
 		k = n - k
-	# todo spiegeln
 	rows = []
 	rows.append([1] * (n + 1))
 	for i in range(k):
@@ -39,7 +35,5 @@ def get_result(n: int, k: int) -> int:
 	end = time.time()
 	print(end - start)
 	return rows[-1][-1]
-# 0,96 unten schneller
 
-# 0.30745887756347656s
 print(get_result(10000, 88))

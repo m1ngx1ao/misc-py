@@ -12,8 +12,6 @@ def recursive(n: int, k: int) -> int:
 		return 1
 	return recursive(n - 1, k - 1) + recursive(n - 1, k)
 
-print(recursive(22, 13))
-
 #####################
 # runtime O(n^2)
 # memory  O(n^2)
@@ -24,8 +22,6 @@ def memoized_recursive(n: int, k: int) -> int:
 	if n == 0 or k in (0, n):
 		return 1
 	return memoized_recursive(n - 1, k - 1) + memoized_recursive(n - 1, k)
-
-print(memoized_recursive(22, 13))
 
 #####################
 # runtime O(n^2)
@@ -42,8 +38,6 @@ def top_down_dp(n: int, k: int, lookup: dict[tuple[int, int], int]) -> int:
 		lookup[nk] = top_down_dp(n - 1, k - 1, lookup) + top_down_dp(n - 1, k, lookup)
 	return lookup[nk]
 
-print(top_down_dp(22, 13, {}))
-
 #####################
 # runtime O(n^2)
 # memory  O(n^2)
@@ -58,8 +52,6 @@ def bottom_up_dp(n: int, k: int) -> int:
 			else:
 				pascal[nn, kk] = pascal[nn - 1, kk - 1] + pascal[nn - 1, kk]
 	return pascal[n, k]
-
-print(bottom_up_dp(22, 13))
 
 #####################
 # runtime O(n^2)
@@ -77,5 +69,3 @@ def bottom_up_dp_const_memory(n: int, k: int) -> int:
 				new_line.append(old_line[kk - 1] + old_line[kk])
 		old_line = new_line
 	return old_line[k]
-
-print(bottom_up_dp_const_memory(22, 13))

@@ -1,5 +1,5 @@
-from test.academy.sorter import challenges
-from academy.sorter import bubble_sort as sorter
+import challenges
+from sorter import heap_sort as sorter
 
 def test_empty():
 	challenges.empty(sorter)

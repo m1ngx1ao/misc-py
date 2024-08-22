@@ -1,7 +1,6 @@
 import functools as ft
 
-coins = [1, 7, 5]
-target = 11
+coins = []
 
 print('starting...')
 
@@ -13,8 +12,6 @@ def dummy(n: int) -> int:
 			rest -= c
 			counter += 1
 	return counter
-
-print(dummy(target))
 
 #####################
 # runtime O(2^n)
@@ -30,8 +27,6 @@ def recursive(n : int) -> int:
 		if n - coin >= 0
 	)
 
-print(recursive(target))	
-
 #####################
 # runtime O(n)
 # memory  O(n)
@@ -46,8 +41,6 @@ def memoized_recursive(n : int) -> int:
 		for coin in coins
 		if n - coin >= 0
 	)	
-
-print(memoized_recursive(target))	
 
 #####################
 # runtime O(n)
@@ -67,8 +60,6 @@ def top_down_dp(n : int, d: dict[int, int]) -> int:
 		)
 	return d[n]
 
-print(top_down_dp(target, {}))
-
 #####################
 # runtime O(n)
 # memory  O(n)
@@ -86,8 +77,6 @@ def bottom_up_dp(n : int) -> int:
 		)
 	return coins_needed[n]
 
-print(bottom_up_dp(target))	
-
 #####################
 # runtime O(n)
 # memory  O(1)
@@ -103,5 +92,3 @@ def bottom_up_dp_constant_memory(n : int) -> int:
 			if i - coin >= 0
 		)
 	return coins_needed[n % biggest_coin]
-
-print(bottom_up_dp_constant_memory(target))	
